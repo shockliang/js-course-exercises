@@ -8,8 +8,8 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-
-var scores, roundScore, activePlayer, gamePlaying;
+const winCondition = 100;
+var scores, roundScore, activePlayer, gamePlaying, lastDice;
 
 initialGame();
 
@@ -23,14 +23,21 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         var diceDOM = document.querySelector('.dice');
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
-        
-        if(dice !== 1 ) {
+
+        // roll 6 twice will looses all scores
+        if(dice === 6 && lastDice === 6) {
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer ).textContent = 0;
+            nextPlayer();
+        } else if(dice !== 1 ) {
             // Add score
             roundScore += dice;
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
             nextPlayer();
         }
+
+        lastDice = dice;
     }
 });
 
@@ -43,7 +50,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         document.querySelector('#score-' + activePlayer ).textContent = scores[activePlayer];
 
         // Check if player won the game
-        if(scores[activePlayer] >= 20) {
+        if(scores[activePlayer] >= winCondition) {
             document.querySelector('#name-' + activePlayer).textContent = 'Winner';
             document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
