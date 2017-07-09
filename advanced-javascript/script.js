@@ -122,7 +122,7 @@ console.log(ages);
 console.log(fullAges);
 console.log(heartRates);
 */
-
+/*
 function interviewQuestion(job) {
     if(job === 'designer') {
         return function(name) {
@@ -144,3 +144,16 @@ teacherQuestion('Shock');
 var designQuestion = interviewQuestion('designer');
 designQuestion('Jane');
 interviewQuestion('teacher')('Mark');
+*/
+
+// IIFE
+(function () {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+})();
+
+(function(goodLuck) {
+    var score = Math.random() * 10;
+    console.log(score >= 5 - goodLuck);
+})(1);
+
