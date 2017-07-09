@@ -147,6 +147,7 @@ interviewQuestion('teacher')('Mark');
 */
 
 // IIFE
+/*
 (function () {
     var score = Math.random() * 10;
     console.log(score >= 5);
@@ -156,4 +157,34 @@ interviewQuestion('teacher')('Mark');
     var score = Math.random() * 10;
     console.log(score >= 5 - goodLuck);
 })(1);
+*/
 
+// closures
+function retirement(retirementAge) {
+    var desc = ' years left util retirement.';
+    return function (yearOfBirth) {
+        var year = new Date().getFullYear(); 
+        var age = year - yearOfBirth;
+        console.log((retirementAge - age) + desc);
+    }
+}
+
+var retirementTW = retirement(65);
+retirementTW(1990);
+
+retirement(65)(1990);
+
+function interviewQuestion(job) {
+    return function (name) {
+        if(job === 'designer') {
+            console.log(name + ', can you please explain what ux design is?' );
+        } else if (job === 'teacher') {
+            console.log('What subject do you teach, ' + name + '?');
+        } else {
+            console.log('What subject do you teach, ' + name + '?');
+        }
+    }
+}
+
+interviewQuestion('designer')('John');
+interviewQuestion('teacher')('Mike');
