@@ -22,20 +22,29 @@ var question3 = new Question('Who is the most valuable player of NBA in the 2017
                 
 var questions = [question1, question2, question3];
 
-var idx = Math.floor(Math.random() * questions.length);
-console.log(idx);
-var showQuestion = questions[idx];
-showQuestion.showOptions();
+var isContinue = true;
 
-var playerAnswer = window.prompt("What is your option");
+while (isContinue) {
+    var idx = Math.floor(Math.random() * questions.length);
+    console.log(idx);
+    var showQuestion = questions[idx];
+    showQuestion.showOptions();
 
-console.log('Your answer: ' + playerAnswer);
+    var playerAnswer = window.prompt("What is your answer");
 
-if(showQuestion.isCorrectAnswer(playerAnswer)) {
-    console.log('Correct!');   
-} else {
-    console.log('Wrong answer');
+    if(playerAnswer === 'exit') {
+        isContinue = false;
+    } else {
+        console.log('Your answer: ' + playerAnswer);
+
+        if(showQuestion.isCorrectAnswer(playerAnswer)) {
+            console.log('Correct!');   
+        } else {
+            console.log('Wrong answer');
+        }
+    }
 }
+
 
 
 
