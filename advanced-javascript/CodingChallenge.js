@@ -23,6 +23,7 @@
     var questions = [question1, question2, question3];
 
     var isContinue = true;
+    var score = 0;
 
     while (isContinue) {
         var idx = Math.floor(Math.random() * questions.length);
@@ -33,11 +34,13 @@
 
         if(playerAnswer === 'exit') {
             isContinue = false;
+            console.log('Bye!');
         } else {
             console.log('Your answer: ' + playerAnswer);
 
             if(showQuestion.isCorrectAnswer(playerAnswer)) {
-                console.log('Correct!');   
+                score++;
+                console.log('Correct!, Your socre is:' + score);   
             } else {
                 console.log('Wrong answer');
             }
