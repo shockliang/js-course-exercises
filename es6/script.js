@@ -161,7 +161,7 @@
 
 // Array
 
-const boxes = document.querySelectorAll('.box');
+//const boxes = document.querySelectorAll('.box');
 
 // es5
 // var boxesArrayEs5 = Array.prototype.slice.call(boxes);
@@ -176,26 +176,54 @@ const boxes = document.querySelectorAll('.box');
 //     boxesArrayEs5[i].textContent = 'I changed to blue';
 // }
 
-var ages = [12, 17, 8, 21, 14, 11];
-var full = ages.map(function(cur) {
-    return cur >= 18;
-});
+// var ages = [12, 17, 8, 21, 14, 11];
+// var full = ages.map(function(cur) {
+//     return cur >= 18;
+// });
 
-console.log(full);
-console.log(full.indexOf(true));
-console.log(ages[full.indexOf(true)]);
+// console.log(full);
+// console.log(full.indexOf(true));
+// console.log(ages[full.indexOf(true)]);
+
+// // es6
+// // Array.from(boxes).forEach(current => current.style.backgroundColor = 'dodgerblue');
+
+// // var boxesEs6 = Array.from(boxes);
+// // for(const current of boxesEs6) {
+// //     if(current.className === 'box blue') {
+// //         continue;
+// //     }
+// //     current.textContent = 'I changed to blue!';
+// // }
+
+// console.log(ages.findIndex(cur => cur >= 18));
+
+// console.log(ages.find(cur => cur >= 18));
+
+// Spread operator
+function addFourAges(a, b, c, d) {
+    return a + b + c + d;
+}
+
+var sum1 = addFourAges(18, 30, 12, 21);
+console.log(sum1);
+
+// es5
+var ages = [18, 30, 12, 21];
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
 
 // es6
-// Array.from(boxes).forEach(current => current.style.backgroundColor = 'dodgerblue');
+const sum3 = addFourAges(...ages);
+console.log(sum3);
 
-// var boxesEs6 = Array.from(boxes);
-// for(const current of boxesEs6) {
-//     if(current.className === 'box blue') {
-//         continue;
-//     }
-//     current.textContent = 'I changed to blue!';
-// }
+const familySmith = ['John', 'Jane', 'Mark'];
+const familyMiller = ['Mary', 'Bob', 'Ann'];
+const bigFamily = [...familySmith, 'Lily', ...familyMiller];
+console.log(bigFamily);
 
-console.log(ages.findIndex(cur => cur >= 18));
+const h = document.querySelector('h1');
+const boxes = document.querySelectorAll('.box');
+const all = [h, ...boxes];
 
-console.log(ages.find(cur => cur >= 18));
+Array.from(all).forEach(cur => cur.style.color = 'purple');
