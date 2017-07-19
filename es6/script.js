@@ -37,27 +37,88 @@
 // console.log(firstName.repeat(3));
 
 // Arrow function
-const years = [1990, 1965, 1982, 1937];
+// const years = [1990, 1965, 1982, 1937];
+
+// // es5
+// var agesEs5 = years.map(function(el) {
+//     return new Date().getFullYear() - el;
+// });
+
+// console.log(agesEs5);
+
+// // es6
+// let agesEs6 = years.map(el => new Date().getFullYear() - el );
+// console.log(agesEs6);
+
+// agesEs6 = years.map((el, index) => 
+//     `Age element ${index + 1}: ${new Date().getFullYear() - el}`
+// );
+// console.log(agesEs6);
+
+// agesEs6 = years.map((el, idx) => {
+//     const year = new Date().getFullYear();
+//     const age = year - el;
+//     return `Age element ${idx + 1}: ${age}`;
+// });
+
+// Arrow function with 'this' keyword
 
 // es5
-var agesEs5 = years.map(function(el) {
-    return new Date().getFullYear() - el;
-});
+var boxEs5 = {
+    color: 'green',
+    position: 1,
+    clickMe: function() {
+        var self = this;
+        document.querySelector('.green').addEventListener('click', function() {
+            console.log(this);
+            var str = 'This is box number ' + self.position + ' and it is ' + self.color;
+            alert(str);
+        });
+    }
+}
 
-console.log(agesEs5);
+//boxEs5.clickMe();
 
 // es6
-let agesEs6 = years.map(el => new Date().getFullYear() - el );
-console.log(agesEs6);
+var boxEs6 = {
+    color: 'green',
+    position: 1,
+    clickMe: function() {
+        document.querySelector('.green').addEventListener('click', () => {
+            console.log(this);
+            var str = 'This is box number ' + this.position + ' and it is ' + this.color;
+            alert(str);
+        });
+    }
+}
 
-agesEs6 = years.map((el, index) => 
-    `Age element ${index + 1}: ${new Date().getFullYear() - el}`
-);
-console.log(agesEs6);
+boxEs6.clickMe();
 
-agesEs6 = years.map((el, idx) => {
-    const year = new Date().getFullYear();
-    const age = year - el;
-    return `Age element ${idx + 1}: ${age}`;
-});
+function Person(name) {
+    this.name = name;
+}
 
+// es5
+Person.prototype.myFriends = function(friends) {
+    console.log(this);
+    // var self = this;
+    var arr = friends.map(function(el) {
+        return this.name + ' is friends with ' + el;
+    }.bind(this));
+
+    console.log(arr);
+}
+
+var friends = ['Bob', 'Jane', 'Mark'];
+
+new Person('Shock').myFriends(friends);
+
+// es6
+Person.prototype.myFriendsEs6 = function(friends) {
+    console.log(this);
+    var arr = friends.map(el => `${this.name} is friends with  ${el}`);
+
+    console.log(arr);
+}
+
+new Person('Shock es6').myFriendsEs6(friends);
