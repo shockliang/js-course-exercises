@@ -126,34 +126,76 @@
 // Destructuring
 
 // es5
-var john = ['John', 26];
-// var name = john[0];
-// var age = john[1];
+// var john = ['John', 26];
+// // var name = john[0];
+// // var age = john[1];
+
+// // es6
+// const [name, year] = ['John', 26];
+// console.log(name);
+// console.log(year);
+
+// const obj = {
+//     firstName: 'Shock',
+//     lastName: 'Liang'
+// }
+
+// const {firstName, lastName} = obj;
+
+// console.log(firstName);
+// console.log(lastName);
+
+// const {firstName: a, lastName: b} = obj
+// console.log(a);
+// console.log(b);
+
+// function calcAgeRetirement(year) {
+//     const age = new Date().getFullYear() - year;
+//     return [age, 65 - age];
+// }
+
+// const [age2, retirement] = calcAgeRetirement(1990);
+// console.log(age2);
+// console.log(retirement);
+
+
+// Array
+
+const boxes = document.querySelectorAll('.box');
+
+// es5
+// var boxesArrayEs5 = Array.prototype.slice.call(boxes);
+// boxesArrayEs5.forEach(function(current) {
+//     current.style.backgroundColor = 'dodgerblue';
+// });
+
+// for(var i = 0; i< boxesArrayEs5.length; i++) {
+//     if(boxesArrayEs5[i].className === 'boxblue') {
+//         continue;
+//     }
+//     boxesArrayEs5[i].textContent = 'I changed to blue';
+// }
+
+var ages = [12, 17, 8, 21, 14, 11];
+var full = ages.map(function(cur) {
+    return cur >= 18;
+});
+
+console.log(full);
+console.log(full.indexOf(true));
+console.log(ages[full.indexOf(true)]);
 
 // es6
-const [name, year] = ['John', 26];
-console.log(name);
-console.log(year);
+// Array.from(boxes).forEach(current => current.style.backgroundColor = 'dodgerblue');
 
-const obj = {
-    firstName: 'Shock',
-    lastName: 'Liang'
-}
+// var boxesEs6 = Array.from(boxes);
+// for(const current of boxesEs6) {
+//     if(current.className === 'box blue') {
+//         continue;
+//     }
+//     current.textContent = 'I changed to blue!';
+// }
 
-const {firstName, lastName} = obj;
+console.log(ages.findIndex(cur => cur >= 18));
 
-console.log(firstName);
-console.log(lastName);
-
-const {firstName: a, lastName: b} = obj
-console.log(a);
-console.log(b);
-
-function calcAgeRetirement(year) {
-    const age = new Date().getFullYear() - year;
-    return [age, 65 - age];
-}
-
-const [age2, retirement] = calcAgeRetirement(1990);
-console.log(age2);
-console.log(retirement);
+console.log(ages.find(cur => cur >= 18));
